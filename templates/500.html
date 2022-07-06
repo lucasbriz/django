@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+   <center><h3>Sua requisição não pode ser atendida no momento, tente mais tarde.</h3></center>
+   <center><h2>Se o problema persistir, informe o erro:
+      {% if msg_erro %}
+      <strong>{{ msg_erro }}</strong>
+      {% else %}
+         500
+      {% endif %}
+   </h2></center>
+
+{% endblock %}

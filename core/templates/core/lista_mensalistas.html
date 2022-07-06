@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h3><h1><center> Lista de Clientes Mensalistas </center></h1><br>
+
+    <ul class="list-group">
+    {% for i in dados %}
+        <li class="list-group-item">
+            Cliente: {{i.id_cliente }}<br>
+            Valor: {{ i.id_tabela }}<br>
+            Vencimento: {{ i.dia_vencimento }}<br>
+            {% if i.em_pendencia %}
+                Dentro do prazo: <strong>Em aberto</strong><br>
+            {% else %}
+                Dentro do prazo: <strong>Ok</strong><br>
+            {% endif %}
+            Forma de Pagamento: {{ i.forma_pagamento }}<br>
+            Total = {{ i.total}}<br>
+
+            <a href="/alterar_mensalista/{{i.id}}/"><i class="fa fa-edit"></i></a>&nbsp
+        </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+
+    <h1><center> Lista de Fabricantes </center></h1><br>
+
+    <ul class="list-group">
+        {% for i in dados %}
+            <li class="list-group-item">
+                Descrição: {{ i.descricao }} <br>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h1><center> Lista de Clientes Rotativos </center></h1><br>
+
+    <ul class="list-group">
+    {% for i in dados %}
+        <li class="list-group-item">
+            Veículo: {{ i.id_veiculo }}<br>
+            Entrada: {{ i.data_entrada }}<br>
+            Saída: {{ i.data_saida }}<br>
+            Total a pagar: {{ i.total }}<br>
+
+            {% if i.pago %}
+              Pago: pagamento efetuado <br>
+            {% else %}
+              Pago: <font color="red">em aberto </font><br>
+            {% endif %}
+            <a href="/alterar_rotativo/{{i.id}}/"><i class="fa fa-edit"></i></a>&nbsp
+        </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h1><center> Tabela de Preços </center></h1><br>
+
+    <ul class="list-group">
+    {% for i in dados %}
+        <li class="list-group-item">
+            {{ i.descricao }} : {{ i.valor }}<br>
+        </li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

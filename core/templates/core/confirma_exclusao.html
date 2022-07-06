@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <h3>Deseja excluir {{ objeto }} permanentemente?</h3>
+
+    <form method="post">
+      {% csrf_token %}
+      <button type="submit" >Sim</button>
+      <button type="button" onclick="location.href='{{ url }}'">Não</button>
+    </form>
+
+{% endblock %}

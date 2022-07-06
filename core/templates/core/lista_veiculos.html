@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block main %}
+    <h1><center> Lista de Veículos </center></h1><br>
+
+    <ul class="list-group">
+        {% for i in dados %}
+        <li class="list-group-item">
+            Cliente: {{ i.id_cliente }} <br>
+            Fabricante: {{ i.id_fabricante }} <br>
+
+            {% if i.modelo %}
+                Modelo: {{ i.modelo }} <br>
+            {% else %}
+                Modelo: <br>
+            {% endif %}
+
+            {% if i.ano %}
+                Ano: {{ i.ano }} <br>
+            {% else %}
+                Ano: <br>
+            {% endif %}
+
+            {% if i.cor%}
+                Cor: {{ i.cor }} <br>
+            {% else %}
+                Cor: <br>
+            {% endif %}
+
+            Placa: {{ i.placa }} <br>
+
+            {% if i.foto %}
+                <img src = "{{ i.foto.url }}" width="200"> <br>
+            {% else %}
+                <img src = "{% static 'img/avatar_carro.jpg' %}" width="200"> <br> <br>
+            {% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

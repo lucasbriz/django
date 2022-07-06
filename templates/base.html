@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TAcar</title>
+    <!-- Carrega Bootstrap 4 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- carrega a fonte de ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- bloco responsável para ativar comandos -->
+    {% block extrahead %}
+    {% endblock %}
+
+</head>
+<body>
+
+    <center> <img src="{% static 'img/ta_car.jpg' %}" width="200"> </center>
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" href="/"><img src="{% static 'img/botao-home.png' %}" width="30"></a>
+
+        <!-- Links -->
+        <ul class="navbar-nav">
+
+            <!-- Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Cadastros
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/cadastro_cliente/">Cadastrar Cliente</a>
+                    <a class="dropdown-item" href="/cadastro_veiculo/">Cadastrar Veículo</a>
+                    <a class="dropdown-item" href="/cadastro_fabricante/">Cadastrar Fabricante</a>
+                    <a class="dropdown-item" href="/cadastro_rotativo/">Cadastrar Rotativo</a>
+                    <a class="dropdown-item" href="/cadastro_mensalista/">Cadastrar Mensalista</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Relatórios
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/lista_clientes/">Listar Cliente</a>
+                    <a class="dropdown-item" href="/lista_veiculos/">Listar Veículo </a>
+                    <a class="dropdown-item" href="/lista_fabricantes/">Listar Fabricante</a>
+                    <a class="dropdown-item" href="/lista_rotativos/">Listar Rotativo</a>
+                    <a class="dropdown-item" href="/lista_mensalistas/">Listar Mensalista</a>
+                </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Tabela de Preços
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/cadastro_tabela/">Cadastrar</a>
+                    <a class="dropdown-item" href="/tabela_precos/">Listar Tabela</a>
+                </div>
+            </li>
+        </ul>
+
+        <form class="form-inline" method="post">
+            {% csrf_token %}
+            <input class="form-control mr-sm-2" type="text" placeholder="Digite o item de busca" name="pesquisa">
+            <button class="btn btn-success" type="submit">Pesquisar</button>
+        </form>
+
+        {% if user.get_username %}
+            &nbsp (<a class="text-warning"> &nbsp usuário: {{ user.get_username }}</a> &nbsp | &nbsp
+            <a href="/accounts/logout/" class="text-danger">Logout</a> &nbsp | &nbsp
+            <a href="/admin/">Admin</a> &nbsp) <br>
+        {% else %}
+            &nbsp (<a class="text-danger"> &nbsp usuário não autenticado </a> &nbsp | &nbsp
+            <a href="/accounts/login/" class="text-warning"> Login </a> &nbsp |
+            <a href="/accounts/registrar/"> &nbsp Registrar </a> &nbsp ) <br>
+        {% endif %}
+
+    </nav>
+    <br>
+
+    <div class="container-fluid">
+        {% block main %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>
